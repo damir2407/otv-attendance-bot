@@ -1,13 +1,13 @@
-package org.example.otvattendancebot;
+package org.example.otvattendancebotdispatcher;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OtvAttendanceBotApplication {
+public class OtvAttendanceBotDispatcherApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OtvAttendanceBotApplication.class, args);
+        SpringApplication.run(OtvAttendanceBotDispatcherApplication.class, args);
     }
 
 }
