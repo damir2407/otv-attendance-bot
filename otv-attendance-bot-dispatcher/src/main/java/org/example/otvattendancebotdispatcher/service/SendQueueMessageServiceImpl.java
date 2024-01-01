@@ -13,6 +13,7 @@ import javax.jms.Session;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.otvattendancebotdispatcher.configuration.jms.JmsQueues;
+import org.example.otvattendancebotdispatcher.configuration.jms.model.AttendanceSendQueueModel;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -28,7 +29,14 @@ public class SendQueueMessageServiceImpl implements SendQueueMessageService {
     @Override
     public void sendToAttendanceSendQueue(Update update) {
         try {
-            String jsonObject = objectMapper.writeValueAsString(update);
+            var message = update.getMessage();
+            var model = new AttendanceSendQueueModel(
+                message.getText(),
+                message.getChatId()
+            );
+
+            String jsonObject = objectMapper.writeValueAsString(model);
+
             send(jmsQueues.getAttendanceSendQueue(), jsonObject);
         } catch (JsonProcessingException e) {
             log.error(e.getMessage());
