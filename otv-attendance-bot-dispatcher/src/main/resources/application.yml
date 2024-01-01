@@ -2,3 +2,8 @@ bot:
   name: "attendance_itmo_bot"
   token: "6741295439:AAEZJU0jITFgRphPptyynMopQCiXzUKDA-I"
 
+jms:
+  service-endpoint: "https://message-queue.api.cloud.yandex.net"
+  signing-region: central1
+  queue-names:
+    attendance-send-queue: "ymq-01"

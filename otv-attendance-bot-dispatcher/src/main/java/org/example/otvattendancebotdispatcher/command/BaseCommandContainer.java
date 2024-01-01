@@ -9,12 +9,12 @@ import org.example.otvattendancebotdispatcher.command.concrete_commands.StartCom
 import org.example.otvattendancebotdispatcher.command.concrete_commands.UnknownCommand;
 import org.example.otvattendancebotdispatcher.service.SendBotMessageService;
 
-public class CommandContainer {
+public class BaseCommandContainer {
 
     private final ImmutableMap<String, Command> commandMap;
     private final Command unknownCommand;
 
-    public CommandContainer(SendBotMessageService sendBotMessageService) {
+    public BaseCommandContainer(SendBotMessageService sendBotMessageService) {
         commandMap = ImmutableMap.<String, Command>builder()
             .put(START.getCommandName(), new StartCommand(sendBotMessageService))
             .put(HELP.getCommandName(), new HelpCommand(sendBotMessageService))

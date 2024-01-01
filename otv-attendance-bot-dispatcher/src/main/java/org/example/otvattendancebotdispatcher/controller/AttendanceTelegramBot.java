@@ -1,7 +1,7 @@
 package org.example.otvattendancebotdispatcher.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import org.example.otvattendancebotdispatcher.command.CommandContainer;
+import org.example.otvattendancebotdispatcher.command.BaseCommandContainer;
+import org.example.otvattendancebotdispatcher.command.QueueCommandContainer;
 import org.example.otvattendancebotdispatcher.configuration.properties.BotProperties;
 import org.example.otvattendancebotdispatcher.service.SendBotMessageServiceImpl;
 import org.springframework.stereotype.Component;
@@ -9,25 +9,27 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
-@Slf4j
 public class AttendanceTelegramBot extends TelegramLongPollingBot {
 
     private final BotProperties botProperties;
-    private final CommandContainer commandContainer;
+    private final BaseCommandContainer baseCommandContainer;
+    private final QueueCommandContainer queueCommandContainer;
 
-    public AttendanceTelegramBot(BotProperties botProperties) {
+    public AttendanceTelegramBot(BotProperties botProperties, QueueCommandContainer queueCommandContainer) {
         this.botProperties = botProperties;
-        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
+        this.queueCommandContainer = queueCommandContainer;
+        this.baseCommandContainer = new BaseCommandContainer(new SendBotMessageServiceImpl(this));
     }
 
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText().trim();
-
             String commandIdentifier = message.split(" ")[0].toLowerCase();
 
-            commandContainer.retrieveCommand(commandIdentifier).execute(update);
+            if (!queueCommandContainer.retrieveCommand(commandIdentifier, update)) {
+                baseCommandContainer.retrieveCommand(commandIdentifier).execute(update);
+            }
         }
     }
 

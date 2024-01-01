@@ -22,12 +22,11 @@ repositories {
 }
 
 dependencies {
+    implementation("com.amazonaws:amazon-sqs-java-messaging-lib:1.0.8")
+    implementation("com.amazonaws:aws-java-sdk-sqs:1.11.176")
     implementation("org.telegram:telegrambots-spring-boot-starter:6.1.0")
-//    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     compileOnly("org.projectlombok:lombok")
-    runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
