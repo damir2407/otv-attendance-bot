@@ -3,7 +3,9 @@ bot:
   token: "6741295439:AAEZJU0jITFgRphPptyynMopQCiXzUKDA-I"
 
 jms:
-  service-endpoint: "https://message-queue.api.cloud.yandex.net"
-  signing-region: central1
+  access-key: ${ACCESS_KEY}
+  secret-key: ${SECRET_KEY}
+  service-endpoint: "https://message-queue.api.cloud.yandex.net/b1gd8ivetmb3vka656qj/dj6000000018nifk04sq/ymq-01"
+  signing-region: "ru-central1"
   queue-names:
     attendance-send-queue: "ymq-01"

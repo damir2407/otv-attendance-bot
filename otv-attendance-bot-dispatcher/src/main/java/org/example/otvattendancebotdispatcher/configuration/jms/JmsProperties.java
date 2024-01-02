@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "jms")
 public class JmsProperties {
 
+    private String accessKey;
+    private String secretKey;
     private String serviceEndpoint;
     private String signingRegion;
 }

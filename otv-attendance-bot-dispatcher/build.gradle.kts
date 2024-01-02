@@ -22,6 +22,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework:spring-jms")
     implementation("com.amazonaws:amazon-sqs-java-messaging-lib:1.0.8")
     implementation("com.amazonaws:aws-java-sdk-sqs:1.11.176")
     implementation("org.telegram:telegrambots-spring-boot-starter:6.1.0")
