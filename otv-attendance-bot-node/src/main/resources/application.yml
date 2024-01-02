@@ -1,6 +1,5 @@
-bot:
-  name: "attendance_itmo_bot"
-  token: ${BOT_TOKEN}
+server:
+  port: 8082
 
 jms:
   access-key: ${ACCESS_KEY}

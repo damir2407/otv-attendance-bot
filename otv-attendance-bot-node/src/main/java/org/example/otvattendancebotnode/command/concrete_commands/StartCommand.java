@@ -1,14 +1,14 @@
-package org.example.otvattendancebotdispatcher.command.concrete_commands;
+package org.example.otvattendancebotnode.command.concrete_commands;
 
-import org.example.otvattendancebotdispatcher.command.Command;
-import org.example.otvattendancebotdispatcher.service.SendBotMessageService;
-import org.telegram.telegrambots.meta.api.objects.Update;
+import org.example.otvattendancebotnode.command.Command;
+import org.example.otvattendancebotnode.jms.model.AttendanceQueueModel;
+import org.example.otvattendancebotnode.jms.producer.JmsProducer;
 
 public class StartCommand implements Command {
 
-    private final SendBotMessageService sendBotMessageService;
+    private final JmsProducer jmsProducer;
 
-    public final static String START_MESSAGE =
+    private final static String START_MESSAGE =
         "Привет, я Attendance Telegram Bot и я помогу тебе быть в курсе последних новостей о посещаемости в университете.\n\n"
             +
             "Моя цель - не только фиксировать твою посещаемость, но и предоставлять полезную информацию. " +
@@ -17,12 +17,16 @@ public class StartCommand implements Command {
             "Для начала, отправь мне команду /help, чтобы узнать, как я могу тебе помочь.";
 
 
-    public StartCommand(SendBotMessageService sendBotMessageService) {
-        this.sendBotMessageService = sendBotMessageService;
+    public StartCommand(JmsProducer jmsProducer) {
+        this.jmsProducer = jmsProducer;
     }
 
     @Override
-    public void execute(Update update) {
-        sendBotMessageService.sendMessage(update.getMessage().getChatId(), START_MESSAGE);
+    public void execute(AttendanceQueueModel model) {
+        var modelToSend = new AttendanceQueueModel(
+            START_MESSAGE,
+            model.getChatId()
+        );
+        jmsProducer.send(modelToSend);
     }
 }

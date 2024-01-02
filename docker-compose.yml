@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  dispatcher:
+    container_name: dispatcher
+    build:
+      context: otv-attendance-bot-dispatcher
+      dockerfile: Dockerfile
+    restart: no
+    ports:
+      - "8080:8080"
+
+  node:
+    container_name: node
+    build:
+      context: otv-attendance-bot-node
+      dockerfile: Dockerfile
+    restart: no
+    ports:
+      - "8082:8082"

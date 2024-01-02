@@ -1,30 +1,29 @@
 package org.example.otvattendancebotdispatcher.command;
 
 import java.util.List;
-import org.example.otvattendancebotdispatcher.service.SendQueueMessageService;
+import org.example.otvattendancebotdispatcher.service.jms.SendQueueMessageService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
-public class QueueCommandContainer {
+public class CommandContainer {
 
-    private final List<String> queueCommands;
+    private final List<String> commands;
     private final SendQueueMessageService sendQueueMessageService;
 
-    public QueueCommandContainer(SendQueueMessageService sendQueueMessageService) {
+    public CommandContainer(SendQueueMessageService sendQueueMessageService) {
         this.sendQueueMessageService = sendQueueMessageService;
-        this.queueCommands = List.of(
-            "/register",
-            "/top"
+        this.commands = List.of(
+            CommandName.HELP.getCommandName(),
+            CommandName.START.getCommandName()
         );
     }
 
     public boolean retrieveCommand(String commandIdentifier, Update update) {
-        var isQueueCommand = queueCommands.contains(commandIdentifier);
-        if (isQueueCommand) {
+        var isCommandExists = commands.contains(commandIdentifier);
+        if (isCommandExists) {
             sendQueueMessageService.sendToAttendanceSendQueue(update);
         }
-
-        return isQueueCommand;
+        return isCommandExists;
     }
 }

@@ -1,4 +1,4 @@
-package org.example.otvattendancebotdispatcher.configuration.jms;
+package org.example.otvattendancebotnode.configuration.jms;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

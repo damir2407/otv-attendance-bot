@@ -1,4 +1,4 @@
-package org.example.otvattendancebotdispatcher.configuration.jms;
+package org.example.otvattendancebotnode.configuration.jms;
 
 import com.amazon.sqs.javamessaging.ProviderConfiguration;
 import com.amazon.sqs.javamessaging.SQSConnectionFactory;
@@ -24,46 +24,10 @@ public class JmsConfiguration {
 
     private final JmsProperties jmsProperties;
 
-    @Bean(name = "SQSProducerConnectionFactory")
-    public SQSConnectionFactory SQSConnectionFactory(
-        @Value("${jms.queues.otv-node.service-endpoint}") String serviceEndpoint,
-        @Value("${jms.queues.otv-node.signing-region}") String signingRegion
-    ) {
-        return new SQSConnectionFactory(
-            new ProviderConfiguration(),
-
-            AmazonSQSClientBuilder
-                .standard()
-                .withCredentials(
-                    new AWSStaticCredentialsProvider(
-                        new BasicAWSCredentials(
-                            jmsProperties.getAccessKey(),
-                            jmsProperties.getSecretKey()
-                        )
-                    )
-                )
-                .withRegion(signingRegion)
-                .withEndpointConfiguration(new EndpointConfiguration(
-                    serviceEndpoint,
-                    signingRegion))
-        );
-    }
-
-    @Bean
-    @Qualifier("otvNodeTemplate")
-    public JmsTemplate otvNodeTemplate(
-        @Value("${jms.queues.otv-node.name}") String queueName,
-        @Qualifier("SQSProducerConnectionFactory") SQSConnectionFactory sqsProducerConnectionFactory
-    ) {
-        JmsTemplate jmsTemplate = new JmsTemplate(sqsProducerConnectionFactory);
-        jmsTemplate.setDefaultDestinationName(queueName);
-        return jmsTemplate;
-    }
-
     @Bean(name = "SQSConsumerConnectionFactory")
     public SQSConnectionFactory SQSConsumerConnectionFactory(
-        @Value("${jms.queues.otv-dispatcher.service-endpoint}") String serviceEndpoint,
-        @Value("${jms.queues.otv-dispatcher.signing-region}") String signingRegion
+        @Value("${jms.queues.otv-node.service-endpoint}") String serviceEndpoint,
+        @Value("${jms.queues.otv-node.signing-region}") String signingRegion
     ) {
         return new SQSConnectionFactory(
             new ProviderConfiguration(),
@@ -95,5 +59,43 @@ public class JmsConfiguration {
         factory.setDestinationResolver(new DynamicDestinationResolver());
         factory.setSessionAcknowledgeMode(Session.AUTO_ACKNOWLEDGE);
         return factory;
+    }
+
+    @Bean(name = "SQSProducerConnectionFactory")
+    public SQSConnectionFactory SQSProducerConnectionFactory(
+        @Value("${jms.queues.otv-dispatcher.service-endpoint}") String serviceEndpoint,
+        @Value("${jms.queues.otv-dispatcher.signing-region}") String signingRegion
+    ) {
+        return new SQSConnectionFactory(
+            new ProviderConfiguration(),
+
+            AmazonSQSClientBuilder
+                .standard()
+                .withCredentials(
+                    new AWSStaticCredentialsProvider(
+                        new BasicAWSCredentials(
+                            jmsProperties.getAccessKey(),
+                            jmsProperties.getSecretKey()
+                        )
+                    )
+                )
+                .withRegion(signingRegion)
+                .withEndpointConfiguration(new EndpointConfiguration(
+                        serviceEndpoint,
+                        signingRegion
+                    )
+                )
+        );
+    }
+
+    @Bean
+    @Qualifier("otvDispatcherTemplate")
+    public JmsTemplate otvDispatcherTemplate(
+        @Value("${jms.queues.otv-dispatcher.name}") String queueName,
+        @Qualifier("SQSProducerConnectionFactory") SQSConnectionFactory sqsProducerConnectionFactory
+    ) {
+        JmsTemplate jmsTemplate = new JmsTemplate(sqsProducerConnectionFactory);
+        jmsTemplate.setDefaultDestinationName(queueName);
+        return jmsTemplate;
     }
 }
