@@ -13,3 +13,14 @@ jms:
       name: "ymq-02"
       service-endpoint: "https://message-queue.api.cloud.yandex.net/b1gd8ivetmb3vka656qj/dj6000000018pg2k04sq/ymq-02"
       signing-region: "ru-central1"
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/otv
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

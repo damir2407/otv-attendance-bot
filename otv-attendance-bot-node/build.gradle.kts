@@ -25,7 +25,7 @@ dependencies {
     implementation("org.springframework:spring-jms")
     implementation("com.amazonaws:amazon-sqs-java-messaging-lib:1.0.8")
     implementation("com.amazonaws:aws-java-sdk-sqs:1.11.176")
-//	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     compileOnly("org.projectlombok:lombok")

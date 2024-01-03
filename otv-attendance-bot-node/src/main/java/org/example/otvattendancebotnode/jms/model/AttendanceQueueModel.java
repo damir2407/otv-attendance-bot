@@ -11,4 +11,11 @@ public class AttendanceQueueModel {
 
     private String text;
     private Long chatId;
+    private String telegramName;
+    private Long telegramUserId;
+
+    public AttendanceQueueModel(String text, Long chatId) {
+        this.text = text;
+        this.chatId = chatId;
+    }
 }

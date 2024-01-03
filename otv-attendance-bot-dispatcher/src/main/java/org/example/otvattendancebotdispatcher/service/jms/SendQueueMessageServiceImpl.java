@@ -26,7 +26,10 @@ public class SendQueueMessageServiceImpl implements SendQueueMessageService {
             var message = update.getMessage();
             var model = new AttendanceQueueModel(
                 message.getText(),
-                message.getChatId()
+                message.getChatId(),
+                message.getFrom().getUserName(),
+                message.getFrom().getId()
+
             );
 
             String jsonObject = objectMapper.writeValueAsString(model);

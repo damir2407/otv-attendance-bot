@@ -7,7 +7,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum CommandName {
     START("/start"),
-    HELP("/help");
+    HELP("/help"),
+    REGISTER("/register");
 
 
     private final String commandName;

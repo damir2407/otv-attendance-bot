@@ -11,4 +11,6 @@ public class AttendanceQueueModel {
 
     private String text;
     private Long chatId;
+    private String telegramName;
+    private Long telegramUserId;
 }

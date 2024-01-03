@@ -15,7 +15,8 @@ public class CommandContainer {
         this.sendQueueMessageService = sendQueueMessageService;
         this.commands = List.of(
             CommandName.HELP.getCommandName(),
-            CommandName.START.getCommandName()
+            CommandName.START.getCommandName(),
+            CommandName.REGISTER.getCommandName()
         );
     }
 
