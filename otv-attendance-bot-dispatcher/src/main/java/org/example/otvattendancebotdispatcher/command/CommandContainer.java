@@ -16,7 +16,10 @@ public class CommandContainer {
         this.commands = List.of(
             CommandName.HELP.getCommandName(),
             CommandName.START.getCommandName(),
-            CommandName.REGISTER.getCommandName()
+            CommandName.REGISTER.getCommandName(),
+            CommandName.REGISTER_TEACHER.getCommandName(),
+            CommandName.REGISTER_GROUP.getCommandName(),
+            CommandName.REGISTER_SUBJECT.getCommandName()
         );
     }
 
