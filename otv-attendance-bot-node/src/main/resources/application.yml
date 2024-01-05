@@ -16,9 +16,9 @@ jms:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/otv
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://rc1d-3160cwp2fiup1w2i.mdb.yandexcloud.net:6432/otv
+    username: ${DB_USER}
+    password: ${DB_PASS}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
