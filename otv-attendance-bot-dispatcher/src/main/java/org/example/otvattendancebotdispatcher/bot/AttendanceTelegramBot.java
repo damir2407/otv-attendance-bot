@@ -15,7 +15,7 @@ public class AttendanceTelegramBot extends TelegramLongPollingBot {
 
     private final BotProperties botProperties;
     private final CommandContainer commandContainer;
-    private static final String UNKNOWN_MESSAGE = "Не понимаю вас \uD83D\uDE1F. Напишите /help чтобы узнать список доступных команд.";
+    private static final String UNKNOWN_MESSAGE = "Не понимаю вас \uD83D\uDE1F. Напишите /help чтобы узнать список доступных команд и их шаблоны.";
 
 
     public AttendanceTelegramBot(BotProperties botProperties, CommandContainer commandContainer) {
@@ -27,15 +27,11 @@ public class AttendanceTelegramBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText().trim();
-            String commandIdentifier = message.split(" ")[0].toLowerCase();
 
-            if (!commandContainer.retrieveCommand(commandIdentifier, update)) {
-                sendUnknownCommandMessage(
-                    update.getMessage().getChatId()
-                );
+            var result = commandContainer.retrieveCommand(message, update);
+            if (!result) {
+                sendUnknownCommandMessage(update.getMessage().getChatId());
             }
-
-
         }
     }
 

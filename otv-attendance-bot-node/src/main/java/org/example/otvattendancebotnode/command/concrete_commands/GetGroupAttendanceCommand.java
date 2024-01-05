@@ -1,9 +1,7 @@
 package org.example.otvattendancebotnode.command.concrete_commands;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import org.example.otvattendancebotnode.command.Command;
-import org.example.otvattendancebotnode.entity.Attendance;
 import org.example.otvattendancebotnode.entity.Group;
 import org.example.otvattendancebotnode.entity.Student;
 import org.example.otvattendancebotnode.jms.model.AttendanceQueueModel;
