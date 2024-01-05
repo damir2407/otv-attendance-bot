@@ -15,7 +15,9 @@ public enum CommandName {
     ASSIGN_TEACHER("/assign_teacher"),
     MARK("/mark"),
     GET_ATTENDANCE("/get_attendance"),
-    GET_GROUP_ATTENDANCE("/get_group_attendance");
+    GET_GROUP_ATTENDANCE("/get_group_attendance"),
+    ENABLE_NOTIFICATION("/enable_notify"),
+    DISABLE_NOTIFICATION("/disable_notify");
 
     private final String commandName;
 }

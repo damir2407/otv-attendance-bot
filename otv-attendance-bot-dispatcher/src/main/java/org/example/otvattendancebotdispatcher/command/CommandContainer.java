@@ -23,7 +23,9 @@ public class CommandContainer {
             CommandName.ASSIGN_TEACHER.getCommandName(),
             CommandName.MARK.getCommandName(),
             CommandName.GET_ATTENDANCE.getCommandName(),
-            CommandName.GET_GROUP_ATTENDANCE.getCommandName()
+            CommandName.GET_GROUP_ATTENDANCE.getCommandName(),
+            CommandName.ENABLE_NOTIFICATION.getCommandName(),
+            CommandName.DISABLE_NOTIFICATION.getCommandName()
         );
     }
 
