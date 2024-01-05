@@ -19,7 +19,11 @@ public class CommandContainer {
             CommandName.REGISTER.getCommandName(),
             CommandName.REGISTER_TEACHER.getCommandName(),
             CommandName.REGISTER_GROUP.getCommandName(),
-            CommandName.REGISTER_SUBJECT.getCommandName()
+            CommandName.REGISTER_SUBJECT.getCommandName(),
+            CommandName.ASSIGN_TEACHER.getCommandName(),
+            CommandName.MARK.getCommandName(),
+            CommandName.GET_ATTENDANCE.getCommandName(),
+            CommandName.GET_GROUP_ATTENDANCE.getCommandName()
         );
     }
 

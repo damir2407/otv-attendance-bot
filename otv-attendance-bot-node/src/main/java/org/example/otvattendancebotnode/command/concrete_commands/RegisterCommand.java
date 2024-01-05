@@ -33,6 +33,7 @@ public class RegisterCommand implements Command {
         var groupName = text[1];
         var studentLastName = text[2];
         var studentFirstName = text[3];
+        var studentPersonnelNumber = Long.valueOf(text[4]);
         var telegramUserId = model.getTelegramUserId();
 
         Optional<Group> group = groupRepository.findByName(groupName);
@@ -61,7 +62,8 @@ public class RegisterCommand implements Command {
             model.getChatId(),
             telegramUserId,
             false,
-            group.get()
+            group.get(),
+            studentPersonnelNumber
         );
 
         studentRepository.save(student);

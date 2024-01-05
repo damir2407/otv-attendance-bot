@@ -2,7 +2,6 @@ package org.example.otvattendancebotnode.command.concrete_commands;
 
 import org.example.otvattendancebotnode.command.Command;
 import org.example.otvattendancebotnode.entity.Group;
-import org.example.otvattendancebotnode.entity.Teacher;
 import org.example.otvattendancebotnode.jms.model.AttendanceQueueModel;
 import org.example.otvattendancebotnode.jms.producer.JmsProducer;
 import org.example.otvattendancebotnode.repository.GroupRepository;

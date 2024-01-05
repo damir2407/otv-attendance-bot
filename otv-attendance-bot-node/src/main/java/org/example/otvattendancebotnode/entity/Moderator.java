@@ -23,13 +23,13 @@ public class Moderator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 64)
+    @Column(length = 64, unique = true)
     private String telegramName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private Long telegramChatId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private Long telegramUserId;
 
 }

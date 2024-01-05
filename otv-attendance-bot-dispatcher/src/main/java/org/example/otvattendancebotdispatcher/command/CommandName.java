@@ -11,7 +11,11 @@ public enum CommandName {
     REGISTER("/register"),
     REGISTER_TEACHER("/register_teacher"),
     REGISTER_GROUP("/register_group"),
-    REGISTER_SUBJECT("/register_subject");
+    REGISTER_SUBJECT("/register_subject"),
+    ASSIGN_TEACHER("/assign_teacher"),
+    MARK("/mark"),
+    GET_ATTENDANCE("/get_attendance"),
+    GET_GROUP_ATTENDANCE("/get_group_attendance");
 
 
     private final String commandName;

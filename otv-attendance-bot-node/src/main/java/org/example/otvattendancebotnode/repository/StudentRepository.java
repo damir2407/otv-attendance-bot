@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
     Optional<Student> findByTelegramUserId(Long telegramUserId);
+
+    Optional<Student> findByPersonnelNumber(Long personnelNumber);
 }
