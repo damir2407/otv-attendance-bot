@@ -1,6 +1,6 @@
 plugins {
     java
-    id("org.springframework.boot") version "2.5.2"
+    id("org.springframework.boot") version "2.7.5"
 }
 apply(plugin = "io.spring.dependency-management")
 
@@ -25,7 +25,7 @@ dependencies {
     implementation("org.springframework:spring-jms")
     implementation("com.amazonaws:amazon-sqs-java-messaging-lib:1.0.8")
     implementation("com.amazonaws:aws-java-sdk-sqs:1.11.176")
-    implementation("org.telegram:telegrambots-spring-boot-starter:6.1.0")
+    implementation("org.telegram:telegrambots-spring-boot-starter:6.8.0")
     implementation("org.springframework.boot:spring-boot-starter-web")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
