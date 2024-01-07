@@ -19,6 +19,7 @@ public class AttendanceTelegramBot extends TelegramLongPollingBot {
 
 
     public AttendanceTelegramBot(BotProperties botProperties, CommandContainer commandContainer) {
+        super(botProperties.getToken());
         this.botProperties = botProperties;
         this.commandContainer = commandContainer;
     }
@@ -53,8 +54,4 @@ public class AttendanceTelegramBot extends TelegramLongPollingBot {
         return botProperties.getName();
     }
 
-    @Override
-    public String getBotToken() {
-        return botProperties.getToken();
-    }
 }
